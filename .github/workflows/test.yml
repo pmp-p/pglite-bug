@@ -17,6 +17,8 @@ jobs:
           node-version: 21.1.0
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+      - name: show node options
+        run: node --print-flag-values|grep wasm
       - name: Install
         run: pnpm install --frozen-lockfile=false
       - name: Test
