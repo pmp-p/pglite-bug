@@ -7,9 +7,6 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-14, windows-latest, ubuntu-22.04]
-        include:
-          - env:
-              NODE_OPTIONS: --jitless
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo
@@ -17,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: 22.17.1
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
       - name: Install
