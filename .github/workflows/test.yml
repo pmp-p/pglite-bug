@@ -7,6 +7,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-14, windows-latest, ubuntu-22.04]
+        include:
+          - env:
+              NODE_OPTIONS: --jitless
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo
