@@ -1,4 +1,4 @@
-name: 21.2.0
+name: CI Node broken ?
 on: [push, workflow_dispatch]
 
 jobs:
@@ -6,7 +6,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, windows-latest, ubuntu-22.04]
+        os: [windows-latest, macos-13, ubuntu-22.04]
+        node: [21.1.0, 21.2.0]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo
@@ -14,11 +15,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 21.2.0
+          node-version: ${{ matrix.node }}
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
       - name: show node options
-        run: node --print-flag-values|grep wasm
+        run: node --print-flag-values --v8-options|grep wasm
       - name: Install
         run: pnpm install --frozen-lockfile=false
       - name: Test
