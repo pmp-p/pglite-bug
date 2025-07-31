@@ -10,6 +10,8 @@ jobs:
         node: [21.1.0, 21.2.0, 22.16.0]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: update os
+        run: sudo apt-get update && sudo apt-get upgrade -y
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Setup Node.js
